@@ -3,1143 +3,369 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aditya's Portfolio</title>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            text-decoration: none;
-            border: none;
-            outline: none;
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
+    <title>Akademix - Track, analyze & share</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#ff7e29',
+                            DEFAULT: '#ff6b00',
+                            dark: '#e05e00',
+                        },
+                        secondary: {
+                            light: '#6b7280',
+                            DEFAULT: '#4b5563',
+                            dark: '#374151',
+                        },
+                    },
+                },
+            },
         }
-
-        :root {
-            --primary-color: #b74b4b;
-            --bg-color: #000000;
-            --text-color: #ffffff;
-        }
-
-        html {
-            font-size: 62.5%;
-            overflow-x: hidden;
-        }
-
-        body {
-            background: var(--bg-color);
-            color: var(--text-color);
-        }
-
-        /* Header Styles */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 2rem 9%;
-            background-color: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(10px);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-        }
-
-        .logo {
-            font-size: 3rem;
-            color: var(--primary-color);
-            font-weight: 800;
-            cursor: pointer;
-            transition: 0.5s ease;
-        }
-
-        .logo:hover {
-            transform: scale(1.1);
-        }
-
-        nav a {
-            font-size: 1.8rem;
-            color: var(--text-color);
-            margin-left: 4rem;
-            font-weight: 500;
-            transition: 0.3s ease;
-            border-bottom: 3px solid transparent;
-        }
-
-        nav a:hover,
-        nav a.active {
-            color: var(--primary-color);
-            border-bottom: 3px solid var(--primary-color);
-        }
-
-        /* Home Section */
-        section {
-            min-height: 100vh;
-            padding: 10rem 9% 2rem;
-        }
-
-        .home {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8rem;
-        }
-
-        .home-content h1 {
-            font-size: 5.6rem;
-            font-weight: 700;
-            line-height: 1.3;
-        }
-
-        .home-content span {
-            color: var(--primary-color);
-        }
-
-        .typing-container {
-            font-size: 3.2rem;
-            font-weight: 600;
-            margin: 2rem 0;
-        }
-
-        .typing-text {
-            color: var(--primary-color);
-            position: relative;
-            padding-right: 8px;
-        }
-
-        .typing-text::after {
-            content: '|';
-            position: absolute;
-            right: 0;
-            color: var(--primary-color);
-            animation: blink 0.7s infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        .home-content p {
-            font-size: 1.6rem;
-            margin: 2rem 0 4rem;
-        }
-
-        .home-img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.home-img img {
-    width: 400px;  /* Fixed width */
-    height: 400px; /* Fixed height to maintain aspect ratio */
-    border-radius: 50%;
-    box-shadow: 0 0 25px var(--primary-color);
-    object-fit: cover;
-}
-
-/* Responsive adjustments */
-@media (max-width: 1200px) {
-    .home-img img {
-        width: 350px;
-        height: 350px;
-    }
-}
-
-@media (max-width: 768px) {
-    .home-img img {
-        width: 300px;
-        height: 300px;
-    }
-}
-
-@media (max-width: 480px) {
-    .home-img img {
-        width: 250px;
-        height: 250px;
-    }
-}
-
-        /* Social Icons */
-        .social-icons {
-            margin-top: 3rem;
-        }
-
-        .social-icons a {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            width: 4rem;
-            height: 4rem;
-            background: transparent;
-            border: 0.2rem solid var(--primary-color);
-            border-radius: 50%;
-            margin: 3rem 1.5rem 3rem 0;
-            transition: 0.5s ease;
-            color: var(--primary-color);
-            font-size: 2rem;
-        }
-
-        .social-icons a:hover {
-            background: var(--primary-color);
-            color: var(--bg-color);
-            box-shadow: 0 0 25px var(--primary-color);
-            transform: scale(1.2);
-        }
-
-        /* Button Styles */
-        .btn {
-            display: inline-block;
-            padding: 1.2rem 2.8rem;
-            background: transparent;
-            border: 0.2rem solid var(--primary-color);
-            border-radius: 4rem;
-            font-size: 1.6rem;
-            color: var(--primary-color);
-            letter-spacing: 0.2rem;
-            font-weight: 600;
-            transition: 0.5s ease;
-        }
-
-        .btn:hover {
-            background: var(--primary-color);
-            color: var(--bg-color);
-            box-shadow: 0 0 25px var(--primary-color);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 991px) {
-            html {
-                font-size: 55%;
+    </script>
+    <style type="text/tailwindcss">
+        @layer components {
+            .btn {
+                @apply px-4 py-2 rounded-md font-medium transition-all duration-200;
             }
-            header {
-                padding: 2rem 4%;
+            .btn-primary {
+                @apply bg-primary text-white hover:bg-primary-dark;
             }
-            section {
-                padding: 10rem 4% 2rem;
+            .btn-outline {
+                @apply border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800;
             }
-        }
-
-        @media (max-width: 768px) {
-            header {
-                background: var(--bg-color);
+            .nav-link {
+                @apply px-4 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200;
             }
-            .home {
-                flex-direction: column;
-                padding-top: 5rem;
+            .stat-card {
+                @apply bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 flex flex-col items-center;
             }
-            .home-content h1 {
-                font-size: 4.5rem;
+            .stat-number {
+                @apply text-4xl font-bold mt-2 mb-1;
             }
-            .home-img img {
-                width: 70vw;
-                margin-top: 4rem;
+            .stat-label {
+                @apply text-gray-500 dark:text-gray-400 text-sm;
             }
-            nav a {
-                margin-left: 2rem;
-            }
-        }
-
-        @media (max-width: 462px) {
-            html {
-                font-size: 50%;
-            }
-            .home-content h1 {
-                font-size: 4rem;
-            }
-        }
-         /* Education Section */
-         .education {
-            padding-top: 8rem;
-        }
-        .education h2 {
-            font-size: 4.5rem;
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-        .education-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-            gap: 3rem;
-        }
-        .education-box {
-            background: rgba(183, 75, 75, 0.1);
-            border: 2px solid #b74b4b;
-            border-radius: 1rem;
-            padding: 2.5rem;
-            transition: .5s ease;
-        }
-        .education-box:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 25px rgba(183, 75, 75, 0.3);
-        }
-        .education-box h3 {
-            font-size: 2.4rem;
-            margin-bottom: 1.5rem;
-        }
-        .education-box p {
-            font-size: 1.6rem;
-            line-height: 1.8;
-        }
-        .year {
-            font-size: 1.5rem;
-            color: #b74b4b;
-            margin-bottom: 1rem;
-        }
-        @media (max-width: 991px) {
-            .header {
-                padding: 2rem 3%;
-            }
-            section {
-                padding: 10rem 3% 2rem;
-            }
-            .home {
-                padding: 0 4%;
-            }
-        }
-        @media (max-width: 768px) {
-            .home {
-                flex-direction: column;
-                padding-top: 5rem;
-            }
-            .home-content h1 {
-                font-size: 5rem;
-            }
-            .typing-text {
-                font-size: 2.6rem;
-            }
-            .home-img img {
-                width: 70vw;
-                margin-top: 4rem;
-            }
-        }
-        @media (max-width: 462px) {
-            html {
-                font-size: 50%;
-            }
-            .home-content h1 {
-                font-size: 4.5rem;
-            }
-        }
-        .education {
-            padding: 8rem 9% 2rem;
-            min-height: 100vh;
-        }
-        .heading {
-            text-align: center;
-            font-size: 4.5rem;
-            margin-bottom: 5rem;
-        }
-        .timeline {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 6px;
-            background: #b74b4b;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -3px;
-        }
-        .container {
-            padding: 10px 40px;
-            position: relative;
-            width: 50%;
-        }
-        .container::after {
-            content: '';
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            right: -17px;
-            background-color: black;
-            border: 4px solid #b74b4b;
-            top: 15px;
-            border-radius: 50%;
-            z-index: 1;
-        }
-        .left {
-            left: 0;
-        }
-        .right {
-            left: 50%;
-        }
-        .left::before {
-            content: " ";
-            height: 0;
-            position: absolute;
-            top: 22px;
-            width: 0;
-            z-index: 1;
-            right: 30px;
-            border: medium solid #b74b4b;
-            border-width: 10px 0 10px 10px;
-            border-color: transparent transparent transparent #b74b4b;
-        }
-        .right::before {
-            content: " ";
-            height: 0;
-            position: absolute;
-            top: 22px;
-            width: 0;
-            z-index: 1;
-            left: 30px;
-            border: medium solid #b74b4b;
-            border-width: 10px 10px 10px 0;
-            border-color: transparent #b74b4b transparent transparent;
-        }
-        .right::after {
-            left: -16px;
-        }
-        .content {
-            padding: 20px 30px;
-            background-color: rgba(183, 75, 75, 0.1);
-            position: relative;
-            border-radius: 6px;
-            border: 2px solid #b74b4b;
-        }
-        .content h2 {
-            font-size: 2.5rem;
-            color: #b74b4b;
-            margin-bottom: 1rem;
-        }
-        .content p {
-            font-size: 1.6rem;
-            line-height: 1.6;
-        }
-
-        /* Projects Section */
-        .projects {
-            padding: 8rem 9% 2rem;
-            min-height: 100vh;
-        }
-        .projects-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 20px;
-        }
-        .project-card {
-            background: rgba(183, 75, 75, 0.1);
-            border: 2px solid #b74b4b;
-            border-radius: 10px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-        }
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 0 25px rgba(183, 75, 75, 0.3);
-        }
-        .project-card h3 {
-            font-size: 2.4rem;
-            color: #b74b4b;
-            margin-bottom: 1.5rem;
-        }
-        .project-card p {
-            font-size: 1.6rem;
-            margin-bottom: 2rem;
-        }
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        .tech-tag {
-            padding: 0.5rem 1.5rem;
-            background: rgba(183, 75, 75, 0.2);
-            border: 1px solid #b74b4b;
-            border-radius: 20px;
-            font-size: 1.4rem;
-        }
-        .project-links {
-            display: flex;
-            gap: 2rem;
-        }
-        .project-links a {
-            font-size: 1.6rem;
-            color: #b74b4b;
-            transition: all 0.3s ease;
-        }
-        .project-links a:hover {
-            color: white;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 8rem 9% 2rem;
-            min-height: 100vh;
-        }
-        .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 4rem;
-        }
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-        .contact-card {
-            background: rgba(183, 75, 75, 0.1);
-            border: 2px solid #b74b4b;
-            border-radius: 10px;
-            padding: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            transition: all 0.3s ease;
-        }
-        .contact-card:hover {
-            transform: translateX(10px);
-            box-shadow: 0 0 25px rgba(183, 75, 75, 0.3);
-        }
-        .contact-card i {
-            font-size: 2.5rem;
-            color: #b74b4b;
-        }
-        .contact-card .info {
-            flex: 1;
-        }
-        .contact-card h3 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-        .contact-card p {
-            font-size: 1.6rem;
-            color: #ccc;
-        }
-        .contact-form {
-            background: rgba(183, 75, 75, 0.1);
-            border: 2px solid #b74b4b;
-            border-radius: 10px;
-            padding: 3rem;
-        }
-        .form-group {
-            margin-bottom: 2rem;
-        }
-        .form-group label {
-            display: block;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            background: transparent;
-            border: 2px solid #b74b4b;
-            border-radius: 5px;
-            color: white;
-            font-size: 1.6rem;
-        }
-        .form-group textarea {
-            height: 150px;
-            resize: none;
-        }
-        .submit-btn {
-            background: #b74b4b;
-            color: black;
-            padding: 1rem 3rem;
-            border-radius: 5px;
-            font-size: 1.8rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .submit-btn:hover {
-            background: transparent;
-            color: #b74b4b;
-            border: 2px solid #b74b4b;
-        }
-
-        /* Keep your existing media queries and add these modifications */
-        @media (max-width: 768px) {
-            .timeline::after {
-                left: 31px;
-            }
-            .container {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-            .right {
-                left: 0%;
-            }
-            .left::before, .right::before {
-                left: 60px;
-                border-width: 10px 10px 10px 0;
-                border-color: transparent #b74b4b transparent transparent;
-            }
-            .left::after, .right::after {
-                left: 15px;
-            }
-            .typing-text span::before {
-            content: "";
-            color: #b74b4b;
-            animation: typing 20s infinite;
-        }
-        .skills {
-            padding: 8rem 9% 2rem;
-            min-height: 100vh;
-        }
-
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-category {
-            background: rgba(183, 75, 75, 0.1);
-            border: 2px solid #b74b4b;
-            border-radius: 10px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(183, 75, 75, 0.3);
-        }
-
-        .skill-category h3 {
-            font-size: 2.4rem;
-            color: #b74b4b;
-            margin-bottom: 2rem;
-        }
-
-        .skill-item {
-            margin-bottom: 2rem;
-        }
-
-        .skill-name {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .skill-bar {
-            height: 1rem;
-            background: rgba(183, 75, 75, 0.2);
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .skill-progress {
-            height: 100%;
-            background: #b74b4b;
-            border-radius: 5px;
-            transition: width 1s ease;
-        }
-        }
-        .typing-text {
-    font-size: 3.2rem;
-    font-weight: 600;
-    margin: 2rem 0;
-}
-
-.coding-platforms {
-    padding: 8rem 9% 2rem;
-    min-height: 100vh;
-}
-
-.platforms-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 20px;
-}
-
-.platform-card {
-    background: rgba(183, 75, 75, 0.1);
-    border: 2px solid #b74b4b;
-    border-radius: 10px;
-    padding: 2rem;
-    transition: all 0.3s ease;
-    text-align: center;
-}
-
-.platform-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 0 25px rgba(183, 75, 75, 0.3);
-}
-
-.platform-icon {
-    font-size: 4rem;
-    color: #b74b4b;
-    margin-bottom: 1.5rem;
-}
-
-.platform-card h3 {
-    font-size: 2.4rem;
-    color: #b74b4b;
-    margin-bottom: 1.5rem;
-}
-
-.platform-stats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.stat-item {
-    text-align: center;
-}
-
-.stat-value {
-    font-size: 2.4rem;
-    color: #b74b4b;
-    font-weight: 600;
-}
-
-.stat-label {
-    font-size: 1.4rem;
-    color: #fff;
-}
-
-.platform-link {
-    display: inline-block;
-    padding: 1rem 2rem;
-    background: transparent;
-    border: 2px solid #b74b4b;
-    border-radius: 5px;
-    color: #b74b4b;
-    font-size: 1.6rem;
-    transition: all 0.3s ease;
-}
-
-.platform-link:hover {
-    background: #b74b4b;
-    color: #000;
-}
-        /* Add new styles for Skills section */
-        .skills {
-            padding: 8rem 9% 2rem;
-            min-height: 100vh;
-        }
-
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-category {
-            background: rgba(183, 75, 75, 0.1);
-            border: 2px solid #b74b4b;
-            border-radius: 10px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(183, 75, 75, 0.3);
-        }
-
-        .skill-category h3 {
-            font-size: 2.4rem;
-            color: #b74b4b;
-            margin-bottom: 2rem;
-        }
-
-        .skill-item {
-            margin-bottom: 2rem;
-        }
-
-        .skill-name {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .skill-bar {
-            height: 1rem;
-            background: rgba(183, 75, 75, 0.2);
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .skill-progress {
-            height: 100%;
-            background: #b74b4b;
-            border-radius: 5px;
-            transition: width 1s ease;
         }
     </style>
 </head>
-<body>
-    <header>
-        <a href="#" class="logo">Aditya</a>
-        <nav>
-            <a href="#home" class="active">Home</a>
-            <a href="#education">Education</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </nav>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
+    <header class="bg-white dark:bg-gray-800 shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center">
+                <div class="mr-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                        <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                    </svg>
+                </div>
+                <div class="flex items-center">
+                    <span class="text-xl font-bold text-gray-900 dark:text-white">Akad</span>
+                    <span class="text-xl font-bold text-primary">emix</span>
+                </div>
+            </div>
+            
+            <nav class="hidden md:flex items-center space-x-1">
+                <a href="#" class="nav-link text-gray-700 dark:text-gray-300">Assignment Tracker</a>
+                <a href="#" class="nav-link text-gray-700 dark:text-gray-300">Event Tracker</a>
+                <a href="#" class="nav-link text-gray-700 dark:text-gray-300">Profile Tracker</a>
+                <button id="theme-toggle" class="nav-link text-gray-700 dark:text-gray-300">
+                    <i class="fa-solid fa-sun dark:hidden"></i>
+                    <i class="fa-solid fa-moon hidden dark:inline"></i>
+                </button>
+                <a href="#" class="btn btn-primary">Login</a>
+            </nav>
+            
+            <div class="md:hidden flex items-center">
+                <button id="mobile-theme-toggle" class="p-2 rounded-md text-gray-700 dark:text-gray-300">
+                    <i class="fa-solid fa-sun dark:hidden"></i>
+                    <i class="fa-solid fa-moon hidden dark:inline"></i>
+                </button>
+                <button id="mobile-menu-button" class="p-2 rounded-md text-gray-700 dark:text-gray-300">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 shadow-inner">
+            <div class="container mx-auto px-4 py-2 space-y-2">
+                <a href="#" class="block nav-link text-gray-700 dark:text-gray-300">Assignment Tracker</a>
+                <a href="#" class="block nav-link text-gray-700 dark:text-gray-300">Event Tracker</a>
+                <a href="#" class="block nav-link text-gray-700 dark:text-gray-300">Profile Tracker</a>
+                <a href="#" class="block btn btn-primary text-center">Login</a>
+            </div>
+        </div>
     </header>
 
-    <section class="home" id="home">
-        <div class="home-content">
-            <h1>Hi, I'm <span>Aditya Aishwarya</span></h1>
-            <div class="typing-container">
-                I'm a <span class="typing-text"></span>
-            </div>
-            <p>As an engineering student, I have developed a deep passion for the intersection of coding and mathematics, recognizing how these two fields complement each other in the realm of technology. My academic journey has equipped me with a solid foundation in both theoretical concepts and practical applications, allowing me to appreciate the beauty of algorithms and the power of data structures.</p>
-            <div class="social-icons">
-                <a href="https://www.linkedin.com/in/aditya-aishwarya-57a731288/"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/Aditya1286"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="https://www.instagram.com/wakeupadit/"><i class="fab fa-instagram"></i></a>
-            </div>
-            <a href="#contact" class="btn">Hire Me</a>
-        </div>
-
-        <div class="home-img">
-            <img src="https://images.stockcake.com/public/5/e/6/5e6fb906-70e0-4ec9-9df9-fb564a8fec74_large/coder-at-work-stockcake.jpg" alt="profile">
-        </div>
-    </section>
-    <section class="education" id="education">
-        <h2 class="heading">My <span>Education</span></h2>
-        <div class="timeline">
-            <div class="container left">
-                <div class="content">
-                    <h2>2023 - 2027</h2>
+    <main>
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
+                        Track, analyze & share
+                    </h1>
+                    <h2 class="text-xl md:text-2xl max-w-3xl mx-auto text-gray-600 dark:text-gray-400">
+                        <span class="font-bold">Akad<span class="text-primary">emix</span></span> helps you navigate and track your
+                        learning journey to success
+                    </h2>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-4 mb-16">
+                    <a href="#" class="btn btn-outline bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300">
+                        Assignment Tracker
+                    </a>
+                    <a href="#" class="btn btn-primary">
+                        Profile Tracker <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+                    <div class="md:w-1/3 flex justify-center">
+                        <div class="relative">
+                            <div class="w-64 h-64 md:w-80 md:h-80 bg-primary/10 dark:bg-primary/5 rounded-full flex items-center justify-center">
+                                <img src="https://i.pinimg.com/originals/a8/6b/82/a86b8281898aa135a41280e67cbd2c96.jpg" alt="Student avatar" class="w-56 h-56 md:w-72 md:h-72 rounded-full object-cover object-center" />
+                            </div>
+                            <div class="absolute -bottom-6 -right-6 bg-white dark:bg-gray-800 rounded-full p-4 shadow-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                                    <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
                     
-                    <h2>B.Tech in Computer Science</h2>
-                    <h4>Lovely Professional University</h4>
-                    <p>Currently pursuing my bachelor's degree with a focus on algorithms, data structures, and software development.</p>
+                    <div class="md:w-2/3 mt-16 md:mt-0">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="stat-card">
+                                <div class="text-primary">
+                                    <i class="fa-solid fa-book fa-2x"></i>
+                                </div>
+                                <div class="stat-number text-gray-900 dark:text-white">1010</div>
+                                <div class="stat-label">Total Assignments</div>
+                            </div>
+                            
+                            <div class="stat-card">
+                                <div class="text-primary">
+                                    <i class="fa-solid fa-calendar-check fa-2x"></i>
+                                </div>
+                                <div class="stat-number text-gray-900 dark:text-white">348</div>
+                                <div class="stat-label">Active Days</div>
+                            </div>
+                            
+                            <div class="stat-card">
+                                <div class="text-primary">
+                                    <i class="fa-solid fa-trophy fa-2x"></i>
+                                </div>
+                                <div class="stat-number text-gray-900 dark:text-white">16</div>
+                                <div class="stat-label">Total Contests</div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="font-bold text-lg text-gray-900 dark:text-white">Progress Overview</h3>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">Last 6 months</div>
+                            </div>
+                            <div class="h-48 flex items-end">
+                                <div class="w-1/6 h-12 bg-primary/20 dark:bg-primary/30 rounded-t-md mx-1"></div>
+                                <div class="w-1/6 h-20 bg-primary/30 dark:bg-primary/40 rounded-t-md mx-1"></div>
+                                <div class="w-1/6 h-16 bg-primary/40 dark:bg-primary/50 rounded-t-md mx-1"></div>
+                                <div class="w-1/6 h-24 bg-primary/50 dark:bg-primary/60 rounded-t-md mx-1"></div>
+                                <div class="w-1/6 h-32 bg-primary/70 dark:bg-primary/80 rounded-t-md mx-1"></div>
+                                <div class="w-1/6 h-40 bg-primary rounded-t-md mx-1"></div>
+                            </div>
+                            <div class="flex justify-between mt-2 text-xs text-gray-500 dark:text-gray-400">
+                                <div>Jun</div>
+                                <div>Jul</div>
+                                <div>Aug</div>
+                                <div>Sep</div>
+                                <div>Oct</div>
+                                <div>Nov</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="container right">
-                <div class="content">
-                    <h2>2021 - 2023</h2>
-                    <h2>Senior Secondary Education</h2>
-                    <h4>Trident Public School</h4>
-                    <p>Completed with distinction in Mathematics and Science, laying the foundation for my engineering journey.</p>
+        </section>
+        
+        <section class="py-16 bg-gray-100 dark:bg-gray-800">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Features</h2>
+                    <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                        Akademix provides powerful tools to help you track your educational journey and improve your skills.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-md">
+                        <div class="w-12 h-12 bg-primary/20 dark:bg-primary/30 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-tasks text-primary text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Assignment Tracking</h3>
+                        <p class="text-gray-600 dark:text-gray-400">
+                            Keep track of all your assignments, deadlines, and submissions in one place.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-md">
+                        <div class="w-12 h-12 bg-primary/20 dark:bg-primary/30 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-chart-line text-primary text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Progress Analytics</h3>
+                        <p class="text-gray-600 dark:text-gray-400">
+                            Visualize your progress and identify areas for improvement with detailed analytics.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-md">
+                        <div class="w-12 h-12 bg-primary/20 dark:bg-primary/30 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-users text-primary text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Community Learning</h3>
+                        <p class="text-gray-600 dark:text-gray-400">
+                            Connect with peers, share your achievements, and learn collaboratively.
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div class="container left">
-                <div class="content">
-                    <h2>2020 - 2021</h2>
-                    <h2>Higher Secondary Education</h2>
-                    <h4>G.D.Mother.International School</h4>
-                    <p>Completed with distinction in Mathematics and Science, laying the foundation for my journey.</p>
+        </section>
+        
+        <section class="py-16">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Join thousands of students</h2>
+                    <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                        Start tracking your educational journey today and take the next step toward success.
+                    </p>
+                </div>
+                
+                <div class="flex justify-center">
+                    <a href="#" class="btn btn-primary text-lg px-8 py-3">Get Started</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <section class="projects" id="projects">
-        <h2 class="heading">My <span>Projects</span></h2>
-        <div class="projects-container">
-            <div class="project-card">
-                <h3>Nayaab-An ebooking website</h3>
-                <p>Discover our website's features: real-time availability, user-friendly booking interface.</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">HTML</span>
-                    <span class="tech-tag">CSS</span>
-                    <span class="tech-tag">Javascript</span>
-                </div>
-                <div class="project-links">
-                    <a href="#"><i class="fab fa-github"></i> Github</a>
-                    <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                </div>
-            </div>
-            <div class="project-card">
-                <h3>An Ngo Website</h3>
-                <p>Empowering Communities, Transforming Lives: Join us in making a difference today!</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">HTML</span>
-                    <span class="tech-tag">CSS</span>
-                    <span class="tech-tag">Javascript</span>
-                </div>
-                <div class="project-links">
-                    <a href=""><i class="fab fa-github"></i> Github</a>
-                    <a href="https://aditya1286.github.io/NgoWebsites/"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                </div>
-            </div>
-            <div class="project-card">
-                <h3>Portfolio Website</h3>
-                <p>A responsive portfolio website showcasing my projects and skills, built with modern web technologies.</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">HTML5</span>
-                    <span class="tech-tag">CSS3</span>
-                    <span class="tech-tag">JavaScript</span>
-                </div>
-                <div class="project-links">
-                    <a href="#"><i class="fab fa-github"></i> Github</a>
-                    <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="skills" id="skills">
-        <h2 class="heading">My <span>Skills</span></h2>
-        <div class="skills-container">
-            <div class="skill-category">
-                <h3>Programming Languages</h3>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>Python</span>
-                        <span>85%</span>
+    <footer class="bg-gray-100 dark:bg-gray-800 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="mr-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                            </svg>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-lg font-bold text-gray-900 dark:text-white">Akad</span>
+                            <span class="text-lg font-bold text-primary">emix</span>
+                        </div>
                     </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 85%"></div>
-                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">
+                        Your personal educational journey tracker. We help students navigate their learning path and achieve success.
+                    </p>
                 </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>Java</span>
-                        <span>75%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 75%"></div>
-                    </div>
+                
+                <div>
+                    <h4 class="font-bold text-gray-900 dark:text-white mb-4">Features</h4>
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400">
+                        <li><a href="#" class="hover:text-primary">Assignment Tracker</a></li>
+                        <li><a href="#" class="hover:text-primary">Profile Tracker</a></li>
+                        <li><a href="#" class="hover:text-primary">Event Tracker</a></li>
+                        <li><a href="#" class="hover:text-primary">Analytics Dashboard</a></li>
+                    </ul>
                 </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>C++</span>
-                        <span>80%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 80%"></div>
-                    </div>
+                
+                <div>
+                    <h4 class="font-bold text-gray-900 dark:text-white mb-4">Resources</h4>
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400">
+                        <li><a href="#" class="hover:text-primary">Blog</a></li>
+                        <li><a href="#" class="hover:text-primary">Tutorials</a></li>
+                        <li><a href="#" class="hover:text-primary">Support</a></li>
+                        <li><a href="#" class="hover:text-primary">Documentation</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-gray-900 dark:text-white mb-4">Connect</h4>
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400">
+                        <li><a href="#" class="hover:text-primary">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-primary">Twitter</a></li>
+                        <li><a href="#" class="hover:text-primary">LinkedIn</a></li>
+                        <li><a href="#" class="hover:text-primary">GitHub</a></li>
+                    </ul>
                 </div>
             </div>
-
-            <div class="skill-category">
-                <h3>Web Development</h3>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>HTML5</span>
-                        <span>90%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 90%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>CSS3</span>
-                        <span>85%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 85%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>JavaScript</span>
-                        <span>80%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 80%"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h3>Tools & Technologies</h3>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>Git</span>
-                        <span>75%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 75%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>Linux</span>
-                        <span>85%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 85%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>MySQL</span>
-                        <span>70%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 70%"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="coding-platforms" id="coding">
-        <h2 class="heading">Coding <span>Platforms</span></h2>
-        <div class="platforms-container">
-            <div class="platform-card">
-                <i class="platform-icon fas fa-code"></i>
-                <h3>LeetCode</h3>
-                <div class="platform-stats">
-                    <div class="stat-item">
-                        <div class="stat-value">150+</div>
-                        <div class="stat-label">Problems Solved</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">0</div>
-                        <div class="stat-label">Rating</div>
-                    </div>
-                </div>
-                <a href="https://leetcode.com/u/aishwaryaaditya2/" class="platform-link">View Profile</a>
-            </div>
-    
-            <div class="platform-card">
-                <i class="platform-icon fas fa-laptop-code"></i>
-                <h3>GeeksforGeeks</h3>
-                <div class="platform-stats">
-                    <div class="stat-item">
-                        <div class="stat-value">100+</div>
-                        <div class="stat-label">Problems Solved</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">9124</div>
-                        <div class="stat-label">Institute Rank</div>
-                    </div>
-                </div>
-                <a href="https://www.geeksforgeeks.org/user/aishwaryavllz/" class="platform-link">View Profile</a>
-            </div>
-    
-            <div class="platform-card">
-                <i class="platform-icon fas fa-trophy"></i>
-                <h3>CodeChef</h3>
-                <div class="platform-stats">
-                    <div class="stat-item">
-                        <div class="stat-value">0⭐</div>
-                        <div class="stat-label">Rating</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">2</div>
-                        <div class="stat-label">Problems Solved</div>
-                    </div>
-                </div>
-                <a href="https://www.codechef.com/users/your-profile" class="platform-link">View Profile</a>
-            </div>
-        </div>
-    </section>
-    <section class="contact" id="contact">
-        <h2 class="heading">Contact <span>Me</span></h2>
-        <div class="contact-container">
-            <div class="contact-info">
-                <div class="contact-card">
-                    <i class="fas fa-envelope"></i>
-                    <div class="info">
-                        <h3>Email</h3>
-                        <p>aishwaryaaditya2@email.com</p>
-                    </div>
-                </div>
-                <div class="contact-card">
-                    <i class="fas fa-phone"></i>
-                    <div class="info">
-                        <h3>Phone</h3>
-                        <p>7903567727</p>
-                    </div>
-                </div>
-                <div class="contact-card">
-                    <i class="fas fa-location-dot"></i>
-                    <div class="info">
-                        <h3>Location</h3>
-                        <p>Muzaffarpur, Bihar </p>
-                    </div>
-                </div>
-            </div>
-            <div class="contact-form">
-                <form>
-                    <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Message</label>
-                        <textarea required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
-            </div>
-        </div>
-    </section>
-    <script>
-        // Typing Animation
-        const typingText = document.querySelector('.typing-text');
-        const words = ['Software Engineer', 'Web Developer', 'Web Designer', 'Coder', 'Script Writer'];
-        let wordIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-
-        function type() {
-            const currentWord = words[wordIndex];
             
-            if (isDeleting) {
-                typingText.textContent = currentWord.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typingText.textContent = currentWord.substring(0, charIndex + 1);
-                charIndex++;
-            }
+            <div class="border-t border-gray-200 dark:border-gray-700 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                    &copy; 2025 Akademix. All rights reserved.
+                </p>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-            if (!isDeleting && charIndex === currentWord.length) {
-                isDeleting = true;
-                setTimeout(type, 2000); // Wait before starting to delete
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                wordIndex = (wordIndex + 1) % words.length;
-                setTimeout(type, 500); // Wait before typing next word
+    <script>
+        // Theme toggle functionality
+        const themeToggleButtons = [
+            document.getElementById('theme-toggle'),
+            document.getElementById('mobile-theme-toggle')
+        ];
+        
+        function toggleDarkMode() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
             } else {
-                setTimeout(type, isDeleting ? 100 : 150); // Typing speed
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
             }
         }
-
-        // Start the typing animation
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(type, 1000);
+        
+        themeToggleButtons.forEach(button => {
+            if (button) {
+                button.addEventListener('click', toggleDarkMode);
+            }
         });
-
-        // Active nav link updater
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('nav a');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - sectionHeight / 3)) {
-                    current = section.getAttribute('id');
-                }
+        
+        // Check for saved theme preference or prefer-color-scheme
+        if (localStorage.theme === 'dark' || 
+            (!('theme' in localStorage) && 
+             window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
             });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').slice(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-        });
+        }
     </script>
 </body>
 </html>
